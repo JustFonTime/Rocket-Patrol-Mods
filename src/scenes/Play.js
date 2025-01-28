@@ -181,7 +181,32 @@ class Play extends Phaser.Scene{
     shipExplode(ship){
         //temporarily hiding the ship
         ship.alpha = 0
+
+        //random boom
+        const randBoom = Phaser.Math.Between(0, 3);
+
+
         //creating the explosion sprite at ship position
+
+        switch (randBoom) {
+            case 0:
+                this.sound.play('sfx-explosion')
+                break;
+
+            case 1:
+                this.sound.play('sfx-explosion')
+                break;
+
+            case 2:
+                this.sound.play('sfx-explosion')
+                break;
+            case 3:
+                this.sound.play('sfx-explosion')
+                break;
+            default:
+                break;
+        }
+
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode')      //play the explosion animation
 
@@ -218,7 +243,7 @@ class Play extends Phaser.Scene{
             this.gameOver = true;
         }, null, this);
 
-        this.sound.play('sfx-explosion')
+        
     }
 
 }

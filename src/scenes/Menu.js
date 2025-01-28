@@ -22,6 +22,9 @@ class Menu extends Phaser.Scene {
         //this.load.image('arwing32', "./assets/StarfoxShip32.png")
         //this.load.image('arwing64', "./assets/StarfoxShip64.png")
 
+        //new background
+        this.load.image('menuBackground', "./assets/newBackground1.png")
+
         //load audio
         this.load.audio('sfx-select', './assets/sfx-select.wav')
         this.load.audio('sfx-explosion', './assets/sfx-explosion.wav')
@@ -52,33 +55,39 @@ class Menu extends Phaser.Scene {
             fixedWidth: 0
         }
 
+
+        //create the menu
+
+
+        this.intro = this.add.image(0, 0, 'menuBackground').setOrigin(0);
+
         //display menu text
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5)
-        this.add.text(game.config.width/2, game.config.height/2, 'Use ← → arrows to move & (F) to fire', menuConfig).setOrigin(0.5)
+        //this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'ROCKET PATROL', menuConfig).setOrigin(0.5)
+
+
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize*4 + borderPadding*2, 'Use ← → arrows to move & (F) to fire', menuConfig).setOrigin(0.5)
         menuConfig.backgroundColor = '#00FF00'
         menuConfig.color = '#000'
-        this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, ' Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5)
+        this.add.text(game.config.width/2, game.config.height/2 + borderUISize*5 + borderPadding*3, ' Press ← for Novice or → for Expert', menuConfig).setOrigin(0.5)
 
+        
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
 
+        
 
-        //create the menu
-
+        //Scrapped Idea: interact button to start
         //zones of interaction (x, y, width, height)
-
         // this.input.mouse.disableContextMenu();
-
-        // this.highlight = this.add.rectangle(borderPadding, borderUISize, 70, 70, 0x0182fb).setOrigin(0).setAlpha(0.75)
-
-        // const zone1 = this.add.zone(200, 300, 400,200).setOrigin(0,0);
-
+        // this.highlight = this.add.rectangle(borderPadding, borderUISize, 200, 100, 0x0182fb).setOrigin(0).setAlpha(0.75)
+        // const zone1 = this.add.zone(borderUISize*4 + borderPadding*4, borderPadding*5 + borderUISize*9, 200,100).setOrigin(0,0);
         // zone1.setInteractive();
-
         // zone1.on('pointerover', () => {
         //     this.highlight.y = zone1.y;
         // });
+
+
 
     }
 

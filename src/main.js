@@ -7,8 +7,9 @@
  * 
  * Mods: 
  *  - Create a new enemy Spaceship type (w/ new artwork) that's smaller, moves faster, and is worth more points (5) - 2hrs
- *  - Implement a new timing/scoring mechanism that adds time to the clock for successful hits and subtracts time for misses (5) - 
- *  - Display the time remaining (in seconds) on the screen (3) - 
+ *  - Implement a new timing/scoring mechanism that adds time to the clock for successful hits and subtracts time for misses (5) - 1.5hrs
+ *  - Display the time remaining (in seconds) on the screen (3) - 2hrs
+ *  - Create a new title screen (e.g., new artwork, typography, layout) (3) - 0.5hr
  *  - 
  * 
  * Citations:
