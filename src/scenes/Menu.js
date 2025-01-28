@@ -26,6 +26,9 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-select', './assets/sfx-select.wav')
         this.load.audio('sfx-explosion', './assets/sfx-explosion.wav')
         this.load.audio('sfx-shot', './assets/sfx-shot.wav')
+
+
+        //load background image for menu
     }
 
     create(){
@@ -58,6 +61,25 @@ class Menu extends Phaser.Scene {
 
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
+
+
+
+        //create the menu
+
+        //zones of interaction (x, y, width, height)
+
+        // this.input.mouse.disableContextMenu();
+
+        // this.highlight = this.add.rectangle(borderPadding, borderUISize, 70, 70, 0x0182fb).setOrigin(0).setAlpha(0.75)
+
+        // const zone1 = this.add.zone(200, 300, 400,200).setOrigin(0,0);
+
+        // zone1.setInteractive();
+
+        // zone1.on('pointerover', () => {
+        //     this.highlight.y = zone1.y;
+        // });
+
     }
 
     update(){

@@ -62,18 +62,7 @@ class Play extends Phaser.Scene{
         //GAME Over Flag
         this.gameOver = false
 
-        //60-second play clock
-        scoreConfig.fixedWidth = 0
-        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5)
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5)
-            this.gameOver = true
-        }, null, this)
-
         //displaying the time remaining
-
-
-
         let clockConfig = {
             fontFamily: 'Times New Roman',
             fontSize: '28px',
@@ -84,19 +73,24 @@ class Play extends Phaser.Scene{
                 top: 5,
                 bottom: 5,
             },
+            fixedWidth: 0
         }
         
-        this.timedEvent = this.time.delayedCall(3000, this.onEvent, [], this);
-        this.timeRemain = this.add.text(borderUISize*10 + borderPadding*10, borderUISize + borderPadding*2, [] , clockConfig)
+        //create the text display for time remaining
+        this.timeRemain = this.add.text(borderUISize*10 + borderPadding*10, borderUISize + borderPadding*2, Math.ceil(game.settings.gameTimer / 1000) , clockConfig)
+
+        //60-second play clock
+        clockConfig.fixedWidth = 0
+        this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', clockConfig).setOrigin(0.5)
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', clockConfig).setOrigin(0.5)
+            this.gameOver = true
+        }, null, this)
     }
 
     update(){
 
-        //timer updating
-        this.timeRemain.setText(`Time: ${this.timedEvent.getProgress().toString().substr(0,3)*10} s`)
-
-
-
+        
         //check key input for restart
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyRESET)){
             this.scene.restart()
@@ -139,6 +133,40 @@ class Play extends Phaser.Scene{
             this.p1Rocket.reset()
             this.shipExplode(this.arwing)
         }
+
+        
+        let clockConfig = {
+            fontFamily: 'Times New Roman',
+            fontSize: '28px',
+            backgroundColor: '#FACADE',
+            color: '#A56C84',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+
+        
+        //handles deducting time when missing
+        if(this.p1Rocket.y - 1 <= borderUISize * 3 + borderPadding){
+            let tempTime = this.clock.getRemaining()
+            this.clock.remove()
+            this.clock = this.time.delayedCall(tempTime - 2000, () => {
+                this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', clockConfig).setOrigin(0.5)
+                this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', clockConfig).setOrigin(0.5)
+                this.gameOver = true
+            }, null, this)
+        }
+
+        //timer updating
+        if(!this.gameOver){
+            this.timeRemain.setText(`Time: ${Math.ceil(this.clock.getRemainingSeconds())} s`)
+        }
+
+        
+        
     }
 
     checkCollision(rocket, ship){
@@ -166,7 +194,29 @@ class Play extends Phaser.Scene{
 
         //score adding and text updates
         this.p1Score += ship.points
-        this.scoreLeft.text = this.p1Score
+        this.scoreLeft.text = this.p1Score 
+
+        let clockConfig = {
+            fontFamily: 'Times New Roman',
+            fontSize: '28px',
+            backgroundColor: '#FACADE',
+            color: '#A56C84',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+        
+        //handles adding time when "scoring"
+        let timeLeft = this.clock.getRemaining(); // Gets remaining time
+        this.clock.remove(); // Cancels the current timer
+        this.clock = this.time.delayedCall(timeLeft + 1000, () => {
+            this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', this.clockConfig).setOrigin(0.5);
+            this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', this.clockConfig).setOrigin(0.5);
+            this.gameOver = true;
+        }, null, this);
 
         this.sound.play('sfx-explosion')
     }
