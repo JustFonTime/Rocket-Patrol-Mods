@@ -35,8 +35,7 @@ class Menu extends Phaser.Scene {
         this.load.audio('sfx-explosion5', './assets/sfx-explosion5.wav')
         this.load.audio('sfx-shot', './assets/sfx-shot.wav')
 
-
-        //load background image for menu
+        this.load.audio('bgm', './assets/Ian Post - Night Rider.wav')
     }
 
     create(){
