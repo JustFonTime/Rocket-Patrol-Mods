@@ -255,8 +255,8 @@ class Play extends Phaser.Scene{
         let timeLeft = this.clock.getRemaining(); // Gets remaining time
         this.clock.remove(); // Cancels the current timer
         this.clock = this.time.delayedCall(timeLeft + game.settings.timeBonus, () => {
-            this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', this.clockConfig).setOrigin(0.5);
-            this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', this.clockConfig).setOrigin(0.5);
+            this.add.text(game.config.width / 2, game.config.height / 2, 'GAME OVER', clockConfig).setOrigin(0.5);
+            this.add.text(game.config.width / 2, game.config.height / 2 + 64, 'Press (R) to Restart or ← for Menu', clockConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
 
