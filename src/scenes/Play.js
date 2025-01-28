@@ -183,7 +183,7 @@ class Play extends Phaser.Scene{
         ship.alpha = 0
 
         //random boom
-        const randBoom = Phaser.Math.Between(0, 3);
+        const randBoom = Phaser.Math.Between(0, 5);
 
 
         //creating the explosion sprite at ship position
@@ -194,14 +194,20 @@ class Play extends Phaser.Scene{
                 break;
 
             case 1:
-                this.sound.play('sfx-explosion')
+                this.sound.play('sfx-explosion1')
                 break;
 
             case 2:
-                this.sound.play('sfx-explosion')
+                this.sound.play('sfx-explosion2')
                 break;
             case 3:
-                this.sound.play('sfx-explosion')
+                this.sound.play('sfx-explosion3')
+                break;
+            case 4:
+                this.sound.play('sfx-explosion4')
+                break;
+            case 5:
+                this.sound.play('sfx-explosion5')
                 break;
             default:
                 break;

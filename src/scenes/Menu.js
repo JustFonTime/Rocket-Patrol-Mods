@@ -28,6 +28,11 @@ class Menu extends Phaser.Scene {
         //load audio
         this.load.audio('sfx-select', './assets/sfx-select.wav')
         this.load.audio('sfx-explosion', './assets/sfx-explosion.wav')
+        this.load.audio('sfx-explosion1', './assets/sfx-explosion1.wav')
+        this.load.audio('sfx-explosion2', './assets/sfx-explosion2.wav')
+        this.load.audio('sfx-explosion3', './assets/sfx-explosion3.wav')
+        this.load.audio('sfx-explosion4', './assets/sfx-explosion4.wav')
+        this.load.audio('sfx-explosion5', './assets/sfx-explosion5.wav')
         this.load.audio('sfx-shot', './assets/sfx-shot.wav')
 
 
@@ -75,7 +80,7 @@ class Menu extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
 
 
-        
+
 
         //Scrapped Idea: interact button to start
         //zones of interaction (x, y, width, height)
